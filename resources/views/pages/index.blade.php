@@ -57,11 +57,11 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" style="background: url(<?php echo $home->bg_img ?>) " class="d-flex flex-column justify-content-center">
+  <section id="hero" style=" background: url(<?php echo $home->bg_img ?>) no-repeat center " class="d-flex flex-column justify-content-center">
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
       <h1>{{$home->name}}</h1>
-      <p>I'm <span class="typed" data-typed-items="{{$home->title}}"></span></p>
-      <a href="{{url('$home->resume')}}">Resume</a>
+      <p>I'm <span class="typed" data-typed-items="{{$home->title}}"></span></p><br>
+      <a class="btn bg-info btn-xl text-uppercase js-scroll-trigger mt-6" href="{{(@$home->resume)?url($home->resume):"#"}}">Download Resume</a>
       <div class="social-links">
         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
