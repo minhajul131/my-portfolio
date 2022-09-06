@@ -63,11 +63,11 @@
       <p>I'm <span class="typed" data-typed-items="{{$home->title}}"></span></p><br>
       <a class="btn bg-info btn-xl text-uppercase js-scroll-trigger mt-6" href="{{(@$home->resume)?url($home->resume):"#"}}">Download Resume</a>
       <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a href="{{$home->tw_link}}" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="{{$home->fb_link}}" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="{{$home->insta_link}}" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="{{$home->skype_link}}" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="{{$home->linkdin_link}}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
     </div>
   </section><!-- End Hero -->
@@ -80,15 +80,15 @@
 
         <div class="section-title">
           <h2>About</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>mfdjfhsd hhfhajdhu</p>
         </div>
 
         <div class="row">
           <div class="col-lg-4">
-            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
+            <img src="<?php echo $about->image ?>" class="img-fluid" alt="">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content">
-            <h3>UI/UX Designer &amp; Web Developer.</h3>
+            <h3>Web Developer.</h3>
             <p class="fst-italic">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
               magna aliqua.
@@ -96,25 +96,19 @@
             <div class="row">
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>1 May 1995</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+123 456 7890</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>New York, USA</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>{{$about->birthday}}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>{{$about->degree}}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Address:</strong> <span>{{$about->city}}</span></li>
                 </ul>
               </div>
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>30</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>PhEmailone:</strong> <span>email@example.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>{{$about->phone}}</span></li> 
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{$about->email}}</span></li>
                 </ul>
               </div>
             </div>
-            <p>
-              Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis.
-              Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus itaque neque. Aliquid amet quidem ut quaerat cupiditate. Ab et eum qui repellendus omnis culpa magni laudantium dolores.
-            </p>
+            <p>{{$about->description}}</p>
           </div>
         </div>
 
@@ -122,6 +116,7 @@
     </section><!-- End About Section -->
 
     <!-- ======= Facts Section ======= -->
+{{-- 
     <section id="facts" class="facts">
       <div class="container" data-aos="fade-up">
 
@@ -167,7 +162,9 @@
         </div>
 
       </div>
-    </section><!-- End Facts Section -->
+    </section>
+     --}}
+    <!-- End Facts Section -->
 
     <!-- ======= Skills Section ======= -->
     <section id="skills" class="skills section-bg">
@@ -248,12 +245,12 @@
           <div class="col-lg-6">
             <h3 class="resume-title">Sumary</h3>
             <div class="resume-item pb-0">
-              <h4>Brandon Johnson</h4>
-              <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em></p>
+              <h4>{{$home->name}}</h4>
+              <p><em>{{$about->description}}</em></p>
               <ul>
-                <li>Portland par 127,Orlando, FL</li>
-                <li>(123) 456-7891</li>
-                <li>alice.barkley@example.com</li>
+                <li>{{$about->city}}</li>
+                <li>{{$about->phone}}</li>
+                <li>{{$about->email}}</li>
               </ul>
             </div>
 
@@ -454,13 +451,13 @@
       </div>
     </section><!-- End Portfolio Section -->
 
-    <!-- ======= Services Section ======= -->
+    <!-- ======= Projects Section ======= -->
     <section id="services" class="services">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
           <h2>Projects</h2>
-          <p>Here is my projects</p>
+          <p>Here are my projects</p>
         </div>
 
         <div class="row">
@@ -484,7 +481,7 @@
         </div>
 
       </div>
-    </section><!-- End Services Section -->
+    </section><!-- End Projects Section -->
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials section-bg">
