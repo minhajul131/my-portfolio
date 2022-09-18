@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Create</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edit</h1>
     </div>
 
     <!-- Content Row -->
@@ -14,8 +14,8 @@
             <div class="col-md-12 mt-3">
                 <h3>Your Information</h3>
                 <div class=" mb-3">
-                    <label for="icon" <h4>Icon </h4></label><br>
-                    <input type="text" name="icon" id="icon" value="{{(@$project->icon)?$project->icon:'icon'}}">
+                    <img src="{{url($project->icon)}}" style="width: 25%"><br>
+                    <input class='mt-3 mb-3' type="file" name="icon">
                 </div>
                 <div class="mb-3">
                     <label for="title" <h4>Title</h4></label><br>

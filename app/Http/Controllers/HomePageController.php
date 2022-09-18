@@ -7,11 +7,17 @@ use App\Models\Home;
 
 class HomePageController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function dashboard(){
+        return view('pages.dashboard');
+    }
     public function index()
     {
         $home = Home::first();

@@ -10,12 +10,13 @@
     <!-- Content Row -->
     <form action="{{route('admin.project.store')}}" method="post" enctype="multipart/form-data">
         @csrf
+        {{method_field('PUT')}}
         <div class="row">
             <div class="col-md-12 mt-3">
                 <h3>Your Information</h3>
                 <div class=" mb-3">
-                    <label for="icon" <h4>Icon </h4></label><br>
-                    <input type="text" name="icon" id="icon">
+                    <img src="{{(@$about->image)?url($about->image):asset("assets/img/icon.jpg")}}" style="width: 100%">
+                    <input class='mt-3 mb-3' type="file" name="icon">
                 </div>
                 <div class="mb-3">
                     <label for="title" <h4>Title</h4></label><br>

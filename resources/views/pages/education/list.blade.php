@@ -14,27 +14,31 @@
         <thead>
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">Icon</th>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
+            <th scope="col">Session</th>
+            <th scope="col">Institution</th>
+            <th scope="col">Department</th>
+            <th scope="col">Degree</th>
+            <th scope="col">Location</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
-            @if(count($projects) > 0)
-                @foreach ($projects as $item)
+            @if(count($educations) > 0)
+                @foreach ($educations as $item)
                 <tr>
                     <th scope="row">{{$item->id}}</th>
-                    <td><img src="{{url($item->icon)}}" alt="icon" width="25%"></td>
-                    <td>{{$item->title}}</td>
-                    <td>{{$item->description}}</td>
+                    <td>{{$item->year}}</td>
+                    <td>{{$item->institution}}</td>
+                    <td>{{$item->department}}</td>
+                    <td>{{$item->degree}}</td>
+                    <td>{{$item->location}}</td>
                     <td>
                         <div class="row">
-                            <div class="col-sm-2"><a href="{{route('admin.project.edit', $item->id)}}" class="btn btn-primary">Edit</a></div>
+                            <div class="col-sm-2"><a href="{{route('admin.education.edit', $item->id)}}" class="btn btn-primary">Edit</a></div>
                         </div>
                         <div class="row">
                           <div class="col-sm-2 m-2">
-                            <form action="{{route('admin.project.destroy', $item->id)}}" method="POST">
+                            <form action="{{route('admin.education.destroy', $item->id)}}" method="POST">
                               @csrf
                               @method('Delete')
                               <input type="submit" value="Delete" name="submit" class="btn btn-danger" />

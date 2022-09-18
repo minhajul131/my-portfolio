@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\storage;
 use App\Models\Project;
 
 class ProjectPageController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -37,15 +41,18 @@ class ProjectPageController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'icon'=> 'required | string',
+            'icon'=> 'required | image',
             'title'=> 'required | string',
             'description'=> 'required | string',
         ]);
 
         $project = new project;
-        $project->icon=$request->icon;
         $project->title=$request->title;
         $project->description=$request->description;
+
+        $pr_img = $request->file('icon');
+        Storage::putFile('public/img', $pr_img);
+        $project->icon = "storage/img/".$pr_img->hashName();
 
         $project->save();
 
@@ -85,15 +92,20 @@ class ProjectPageController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'icon'=> 'required | string',
+            
             'title'=> 'required | string',
             'description'=> 'required | string',
         ]);
 
         $project = Project::find($id);
-        $project->icon=$request->icon;
         $project->title=$request->title;
         $project->description=$request->description;
+
+        if($request->file('icon')){
+            $pr_img = $request->file('icon');
+            Storage::putFile('public/img', $pr_img);
+            $project->icon = "storage/img/".$pr_img->hashName();
+        }
 
         $project->save();
 
@@ -109,6 +121,7 @@ class ProjectPageController extends Controller
     public function destroy($id)
     {
         $project = Project::find($id);
+        @unlink(public_path($project->icon));
         $project->delete();
         
         return redirect()->route('admin.project.list')->with('success', 'Project deleted successfully');
