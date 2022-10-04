@@ -59,8 +59,8 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" style=" background: url(<?php echo (@$home->bg_img)?url($home->bg_img):secure_asset("assets/img/bg_img.jpg") ?>) no-repeat center " class="d-flex flex-column justify-content-center">
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
-      <h1>{{$home->name}}</h1>
-      <p>I'm <span class="typed" data-typed-items="{{$home->title}}"></span></p><br>
+      <h1>{{(@$home->name)?$home->name:"Name"}}</h1>
+      <p>I'm <span class="typed" data-typed-items="{{(@$home->title)?$home->title:"Name"}}"></span></p><br>
       <a class="btn bg-info btn-xl text-uppercase js-scroll-trigger mt-6" href="{{(@$home->resume)?url($home->resume):"#"}}">Download Resume</a>
       <div class="social-links">
         <a href="{{$home->tw_link}}" class="twitter"><i class="bx bxl-twitter"></i></a>
