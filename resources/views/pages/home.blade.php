@@ -53,7 +53,7 @@
         </div>
         <div class="col-md-4 mt-3">
             <h3>Background Image</h3>
-            <img src="{{(@$home->bg_img)?url($home->bg_img):asset("assets/img/bg_img.jpg")}}" style="width: 100%">
+            <img src="{{(@$home->bg_img)?url($home->bg_img):secure_asset("assets/img/bg_img.jpg")}}" style="width: 100%">
             <input class='mt-3' type="file" id="bg_img" name="bg_img">
         </div>
     </div>
