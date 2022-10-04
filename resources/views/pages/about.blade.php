@@ -23,7 +23,7 @@
             <h3>Your Information</h3>
             <div class=" mb-3">
                 <label for="birthday" <h4>Birthday </h4></label><br>
-                <input type="text" name="birthday" id="birthday" value="{{$about->birthday}}">
+                <input type="text" name="birthday" id="birthday" value="{{(@$about->birthday)?$about->birthday:"birthday"}}">
             </div>
             <div class=" mb-3">
                 <label for="degree" <h4>degree </h4></label><br>
@@ -38,7 +38,7 @@
             <h3>Your Links</h3>
             <div class=" mb-3">
                 <label for="email" <h4>E-mail </h4></label><br>
-                <input type="email" name="email" id="email" value="{{(@$about->email)?$about->email:"name"}}">
+                <input type="email" name="email" id="email" value="{{(@$about->email)?$about->email:"email"}}">
             </div>
             <div class=" mb-3">
                 <label for="city" <h4>Address </h4></label><br>

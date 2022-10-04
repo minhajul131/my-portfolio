@@ -85,7 +85,7 @@
 
         <div class="row">
           <div class="col-lg-4">
-            <img src="<?php echo $about->image ?>" class="img-fluid" alt="">
+            <img src="<?php echo (@$about->image)?url($about->image):secure_asset("assets/img/image.jpg") ?>" class="img-fluid" alt="">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content">
             <h3>Web Developer.</h3>
@@ -96,19 +96,19 @@
             <div class="row">
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>{{$about->birthday}}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>{{$about->degree}}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Address:</strong> <span>{{$about->city}}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>{{(@$about->birthday)?$about->birthday:"birthday"}}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>{{(@$about->degree)?$about->degree:"degree"}}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Address:</strong> <span>{{(@$about->city)?$about->city:"city"}}</span></li>
                 </ul>
               </div>
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>{{$about->phone}}</span></li> 
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{$about->email}}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>{{(@$about->phone)?$about->phone:"phone"}}</span></li> 
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{(@$about->email)?$about->email:"email"}}</span></li>
                 </ul>
               </div>
             </div>
-            <p>{{$about->description}}</p>
+            <p>{{(@$about->description)?$about->description:"description"}}</p>
           </div>
         </div>
 
