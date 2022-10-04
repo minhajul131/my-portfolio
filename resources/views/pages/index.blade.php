@@ -63,11 +63,11 @@
       <p>I'm <span class="typed" data-typed-items="{{(@$home->title)?$home->title:"Name"}}"></span></p><br>
       <a class="btn bg-info btn-xl text-uppercase js-scroll-trigger mt-6" href="{{(@$home->resume)?url($home->resume):"#"}}">Download Resume</a>
       <div class="social-links">
-        <a href="{{$home->tw_link}}" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="{{$home->fb_link}}" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="{{$home->insta_link}}" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="{{$home->skype_link}}" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="{{$home->linkdin_link}}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a href="{{(@$home->tw_link)?$home->tw_link:"Name"}}" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="{{(@$home->fb_link)?$home->fb_link:"Name"}}" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="{{(@$home->insta_link)?$home->insta_link:"Name"}}" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="{{(@$home->skype_link)?$home->skype_link:"Name"}}" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="{{(@$home->linkdin_link)?$home->linkdin_link:"Name"}}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
     </div>
   </section><!-- End Hero -->
