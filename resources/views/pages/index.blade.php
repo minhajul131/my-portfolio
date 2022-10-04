@@ -245,12 +245,12 @@
           <div class="col-lg-6">
             <h3 class="resume-title">Sumary</h3>
             <div class="resume-item pb-0">
-              <h4>{{$home->name}}</h4>
-              <p><em>{{$about->description}}</em></p>
+              <h4>{{(@$home->name)?$home->name:"Name"}}</h4>
+              <p><em>{{(@$about->description)?$about->description:"description"}}</em></p>
               <ul>
-                <li>{{$about->city}}</li>
-                <li>{{$about->phone}}</li>
-                <li>{{$about->email}}</li>
+                <li>{{(@$about->city)?$about->city:"city"}}</li>
+                <li>{{(@$about->phone)?$about->phone:"phone"}}</li>
+                <li>{{(@$about->email)?$about->email:"email"}}</li>
               </ul>
             </div>
 
@@ -578,19 +578,19 @@
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location:</h4>
-                <p>{{$about->city}}</p>
+                <p>{{(@$about->city)?$about->city:"city"}}</p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>{{$about->email}}</p>
+                <p>{{(@$about->email)?$about->email:"email"}}</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p>{{$about->phone}}</p>
+                <p>{{(@$about->phone)?$about->phone:"phone"}}</p>
               </div>
 
             </div>
