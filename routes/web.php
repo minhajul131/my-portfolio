@@ -39,6 +39,13 @@ Route::get('/admin/education/edit/{id}',[App\Http\Controllers\EducationPageContr
 Route::post('/admin/education/update/{id}',[App\Http\Controllers\EducationPageController::class, 'update'])->name('admin.education.update');
 Route::delete('/admin/education/destroy/{id}',[App\Http\Controllers\EducationPageController::class, 'destroy'])->name('admin.education.destroy');
 
+Route::get('/admin/experience/create',[App\Http\Controllers\ExperiencePageController::class, 'create'])->name('admin.experience.create');
+Route::post('/admin/experience/store',[App\Http\Controllers\ExperiencePageController::class, 'store'])->name('admin.experience.store');
+Route::get('/admin/experience/list',[App\Http\Controllers\ExperiencePageController::class, 'list'])->name('admin.experience.list');
+Route::get('/admin/experience/edit/{id}',[App\Http\Controllers\ExperiencePageController::class, 'edit'])->name('admin.experience.edit');
+Route::post('/admin/experience/update/{id}',[App\Http\Controllers\ExperiencePageController::class, 'update'])->name('admin.experience.update');
+Route::delete('/admin/experience/destroy/{id}',[App\Http\Controllers\ExperiencePageController::class, 'destroy'])->name('admin.experience.destroy');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

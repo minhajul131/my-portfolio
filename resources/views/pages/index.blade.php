@@ -269,18 +269,23 @@
           </div>
           <div class="col-lg-6">
             <h3 class="resume-title">Professional Experience</h3>
-            {{-- <div class="resume-item">
-              <h4>Senior graphic design specialist</h4>
-              <h5>2019 - Present</h5>
-              <p><em>Experion, New York, NY </em></p>
-              <ul>
+            @if (count($experience) > 0)
+            @foreach ($experience as $experiences)
+            <div class="resume-item">
+              <h4><?php echo $experiences->department ?></h4>
+              <h5><?php echo $experiences->year ?></h5>
+              <p><em><?php echo $experiences->institution ?></em></p>
+              <p>Work: <?php echo $experiences->description ?></p>
+              {{-- <ul>
                 <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
                 <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
                 <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
                 <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
-              </ul>
+              </ul> --}}
             </div>
-            <div class="resume-item">
+            @endforeach
+            @endif
+            {{-- <div class="resume-item">
               <h4>Graphic design specialist</h4>
               <h5>2017 - 2018</h5>
               <p><em>Stepping Stone Advertising, New York, NY</em></p>

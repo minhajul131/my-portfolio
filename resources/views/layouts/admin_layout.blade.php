@@ -97,6 +97,21 @@
                     </div>
                 </div>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiezexp"
+                    aria-expanded="true" aria-controls="collapseUtilitie">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Experience</span>
+                </a>
+                <div id="collapseUtilitiezexp" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">                        
+                        <a class="collapse-item" href="{{route('admin.experience.create')}}">Create</a>
+                        <a class="collapse-item" href="{{route('admin.experience.list')}}">List</a>
+                    </div>
+                </div>
+            </li>
             
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
