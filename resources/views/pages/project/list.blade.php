@@ -25,7 +25,7 @@
                 @foreach ($projects as $item)
                 <tr>
                     <th scope="row">{{$item->id}}</th>
-                    <td><img src="{{url($item->icon)}}" alt="icon" width="25%"></td>
+                    <td><img src="{{asset('img/'.$item->icon)}}" alt="icon" width="25%"></td>
                     <td>{{$item->title}}</td>
                     <td>{{$item->description}}</td>
                     <td>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\storage;
 use App\Models\Project;
-
+use File;
 class ProjectPageController extends Controller
 {
     public function __construct(){
@@ -46,15 +46,26 @@ class ProjectPageController extends Controller
             'description'=> 'required | string',
         ]);
 
-        $project = new project;
-        $project->title=$request->title;
-        $project->description=$request->description;
+        // $project = new project;
+        // $project->title=$request->title;
+        // $project->description=$request->description;
 
-        $pr_img = $request->file('icon');
-        Storage::putFile('public/img', $pr_img);
-        $project->icon = "storage/img/".$pr_img->hashName();
+        // $pr_img = $request->file('icon');
+        // Storage::putFile('public/img', $pr_img);
+        // $project->icon = "storage/img/".$pr_img->hashName();
+        $imageName = "";
+            if($project = $request -> file('icon')){
+                $imageName = time().'-'.uniqid().'.'.$project->getClientOriginalExtension();
+                $project->move('img',$imageName);
+            }
 
-        $project->save();
+        // $project->save();
+        Project::create([
+            'icon'=>$imageName,
+            'title'=>$request->title,
+            'description'=>$request->description,
+            
+        ]);
 
         return redirect()->route('admin.project.list')->with('success', 'New projects created successfully');
     }
@@ -98,16 +109,33 @@ class ProjectPageController extends Controller
         ]);
 
         $project = Project::find($id);
-        $project->title=$request->title;
-        $project->description=$request->description;
+        // $project->title=$request->title;
+        // $project->description=$request->description;
 
-        if($request->file('icon')){
-            $pr_img = $request->file('icon');
-            Storage::putFile('public/img', $pr_img);
-            $project->icon = "storage/img/".$pr_img->hashName();
+        // if($request->file('icon')){
+        //     $pr_img = $request->file('icon');
+        //     Storage::putFile('public/img', $pr_img);
+        //     $project->icon = "storage/img/".$pr_img->hashName();
+        // }
+
+        // $project->save();
+        $imageName = "";
+        $deleteOldImage = 'img/'.$project->image;
+        if($project = $request -> file('icon')){
+            if(file_exists($deleteOldImage)){
+                File::delete($deleteOldImage);
+            }
+            $imageName = time().'-'.uniqid().'.'.$project->getClientOriginalExtension();
+            $project->move('img',$imageName);
+        }else{
+            $imageName = $project->icon;
         }
 
-        $project->save();
+        Project::where('id',$id)->update([
+            'icon'=>$imageName,
+            'title'=>$request->title,
+            'description'=>$request->description,
+        ]);
 
         return redirect()->route('admin.project.list')->with('success', 'Project updated successfully');
     }

@@ -15,7 +15,7 @@
         
         <div class="col-md-4 mt-3">
             <h3>About Image</h3>
-            <img src="{{(@$about->image)?url($about->image):secure_asset("assets/img/image.jpg")}}" style="width: 100%">
+            <img src="{{asset('img/'.$about->image)}}" style="width: 100%">
             <input class='mt-3 mb-3' type="file" id="image" name="image">
         </div>
         

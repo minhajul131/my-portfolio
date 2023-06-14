@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\About;
+use File;
 
 class AboutPageController extends Controller
 {
@@ -85,20 +86,41 @@ class AboutPageController extends Controller
         ]);
 
         $about = About::first();
-        $about->birthday=$request->birthday;
-        $about->image=$request->image;
-        $about->degree=$request->degree;
-        $about->phone=$request->phone;
-        $about->email=$request->email;
-        $about->city=$request->city;
-        $about->description=$request->description;
-        if($request->file('image')){
-            $img_file = $request->file('image');
-            $img_file->storeAs('public/img/','image.'.$img_file->getClientOriginalExtension());
-            $about->image = 'storage/img/image.'.$img_file->getClientOriginalExtension();
+        // $about->birthday=$request->birthday;
+        // $about->image=$request->image;
+        // $about->degree=$request->degree;
+        // $about->phone=$request->phone;
+        // $about->email=$request->email;
+        // $about->city=$request->city;
+        // $about->description=$request->description;
+        // if($request->file('image')){
+        //     $img_file = $request->file('image');
+        //     $img_file->storeAs('public/img/','image.'.$img_file->getClientOriginalExtension());
+        //     $about->image = 'storage/img/image.'.$img_file->getClientOriginalExtension();
+        // }
+
+        // $about->save();
+        $imageName = "";
+        $deleteOldImage = 'img/'.$about->image;
+        if($about = $request -> file('image')){
+            if(file_exists($deleteOldImage)){
+                File::delete($deleteOldImage);
+            }
+            $imageName = time().'-'.uniqid().'.'.$about->getClientOriginalExtension();
+            $about->move('img',$imageName);
+        }else{
+            $imageName = $about->image;
         }
 
-        $about->save();
+        About::where('id',1)->update([
+            'birthday'=>$request->birthday,
+            'image'=>$imageName,
+            'degree'=>$request->degree,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+            'city'=>$request->city,
+            'description'=>$request->description,
+        ]);
 
         return redirect()->route('admin.about')->with('success', 'Information updated successfully');
     }
