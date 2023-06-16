@@ -100,6 +100,14 @@ class AboutPageController extends Controller
         // }
 
         // $about->save();
+        About::where('id',1)->update([
+            'birthday'=>$request->birthday,
+            'degree'=>$request->degree,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+            'city'=>$request->city,
+            'description'=>$request->description,
+        ]);
         $imageName = "";
         $deleteOldImage = 'img/'.$about->image;
         if($about = $request -> file('image')){
@@ -108,19 +116,18 @@ class AboutPageController extends Controller
             }
             $imageName = time().'-'.uniqid().'.'.$about->getClientOriginalExtension();
             $about->move('img',$imageName);
-        }else{
-            $imageName = $about->image;
+            About::where('id',1)->update([
+                'birthday'=>$request->birthday,
+                'image'=>$imageName,
+                'degree'=>$request->degree,
+                'phone'=>$request->phone,
+                'email'=>$request->email,
+                'city'=>$request->city,
+                'description'=>$request->description,
+            ]);
         }
 
-        About::where('id',1)->update([
-            'birthday'=>$request->birthday,
-            'image'=>$imageName,
-            'degree'=>$request->degree,
-            'phone'=>$request->phone,
-            'email'=>$request->email,
-            'city'=>$request->city,
-            'description'=>$request->description,
-        ]);
+        
 
         return redirect()->route('admin.about')->with('success', 'Information updated successfully');
     }

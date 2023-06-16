@@ -119,6 +119,10 @@ class ProjectPageController extends Controller
         // }
 
         // $project->save();
+        Project::where('id',$id)->update([
+            'title'=>$request->title,
+            'description'=>$request->description,
+        ]);
         $imageName = "";
         $deleteOldImage = 'img/'.$project->image;
         if($project = $request -> file('icon')){
@@ -127,16 +131,13 @@ class ProjectPageController extends Controller
             }
             $imageName = time().'-'.uniqid().'.'.$project->getClientOriginalExtension();
             $project->move('img',$imageName);
-        }else{
-            $imageName = $project->icon;
+        
+            Project::where('id',$id)->update([
+                'icon'=>$imageName,
+                'title'=>$request->title,
+                'description'=>$request->description,
+            ]);
         }
-
-        Project::where('id',$id)->update([
-            'icon'=>$imageName,
-            'title'=>$request->title,
-            'description'=>$request->description,
-        ]);
-
         return redirect()->route('admin.project.list')->with('success', 'Project updated successfully');
     }
 

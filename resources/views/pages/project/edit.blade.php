@@ -14,7 +14,7 @@
             <div class="col-md-12 mt-3">
                 <h3>Your Information</h3>
                 <div class=" mb-3">
-                    <img src="{{url($project->icon)}}" style="width: 25%"><br>
+                    <img src="{{asset('img/'.$project->icon)}}" style="width: 25%"><br>
                     <input class='mt-3 mb-3' type="file" name="icon">
                 </div>
                 <div class="mb-3">

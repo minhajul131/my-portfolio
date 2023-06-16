@@ -108,6 +108,15 @@ class HomePageController extends Controller
         //     $home->resume = 'storage/pdf/resume.'.$pdf_file->getClientOriginalExtension();
         // }
         // $home->save();
+        Home::where('id',1)->update([
+            'name'=>$request->name,
+            'title'=>$request->title,
+            'tw_link'=>$request->tw_link,
+            'fb_link'=>$request->fb_link,
+            'insta_link'=>$request->insta_link,
+            'skype_link'=>$request->skype_link,
+            'linkdin_link'=>$request->linkdin_link,
+        ]);
 
         $imageName = "";
         $deleteOldImage = 'img/'.$home->bg_img;
@@ -117,32 +126,40 @@ class HomePageController extends Controller
             }
             $imageName = time().'-'.uniqid().'.'.$home->getClientOriginalExtension();
             $home->move('img',$imageName);
-        }else{
-            $imageName = $home->bg_img;
+            Home::where('id',1)->update([
+                'name'=>$request->name,
+                'title'=>$request->title,
+                'bg_img'=>$imageName,
+                'tw_link'=>$request->tw_link,
+                'fb_link'=>$request->fb_link,
+                'insta_link'=>$request->insta_link,
+                'skype_link'=>$request->skype_link,
+                'linkdin_link'=>$request->linkdin_link,
+            ]);
+            
         }
-        $resumeName = "";
-        $deleteOldResume = 'img/'.$home->resume;
-        if($home = $request -> file('resume')){
-            if(file_exists($deleteOldResume)){
-                File::delete($deleteOldResume);
-            }
-            $resumeName = time().'-'.uniqid().'.'.$home->getClientOriginalExtension();
-            $home->move('img',$resumeName);
-        }else{
-            $resumeName = $home->resume;
-        }
+        // $resumeName = "";
+        // $deleteOldResume = 'img/'.$home->resume;
+        // if($home = $request -> file('resume')){
+        //     if(file_exists($deleteOldResume)){
+        //         File::delete($deleteOldResume);
+        //     }
+        //     $resumeName = time().'-'.uniqid().'.'.$home->getClientOriginalExtension();
+        //     $home->move('img',$resumeName);
 
-        Home::where('id',1)->update([
-            'name'=>$request->name,
-            'title'=>$request->title,
-            'bg_img'=>$imageName,
-            'resume'=>$resumeName,
-            'tw_link'=>$request->tw_link,
-            'fb_link'=>$request->fb_link,
-            'insta_link'=>$request->insta_link,
-            'skype_link'=>$request->skype_link,
-            'linkdin_link'=>$request->linkdin_link,
-        ]);
+        //     Home::where('id',1)->update([
+        //         'name'=>$request->name,
+        //         'title'=>$request->title,
+        //         'resume'=>$resumeName,
+        //         'tw_link'=>$request->tw_link,
+        //         'fb_link'=>$request->fb_link,
+        //         'insta_link'=>$request->insta_link,
+        //         'skype_link'=>$request->skype_link,
+        //         'linkdin_link'=>$request->linkdin_link,
+        //     ]);
+        // }
+
+        
         return redirect()->route('admin.home')->with('success','Home page updated successfully');
     }
 
